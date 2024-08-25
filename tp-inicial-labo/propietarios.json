@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "nombre": "Carlos García",
+        "telefono": "+1-555-2345",
+        "correo": "carlos.garcia@correo.com",
+        "direccion": "123 Calle Principal, Ciudad Ejemplo",
+        "autosPropietario": [
+            {
+                "idAuto": 1
+            },
+            {
+                "idAuto": 4
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Ana María Rodríguez",
+        "telefono": "+1-555-6789",
+        "correo": "ana.rodriguez@correo.com",
+        "direccion": "456 Avenida Secundaria, Ciudad Ejemplo",
+        "autosPropietario": [
+            {
+                "idAuto": 2
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "Luis Fernández",
+        "telefono": "+1-555-9876",
+        "correo": "luis.fernandez@correo.com",
+        "direccion": "789 Camino Terciario, Ciudad Ejemplo",
+        "autosPropietario": [
+            {
+                "idAuto": 3 
+            },
+            {
+                "idAuto": 5
+            }
+        ]
+    }
+]
