@@ -1,24 +1,44 @@
 .auto-detail {
     padding: 20px;
-    max-width: 600px;
-    margin: auto;
     text-align: center;
+    background-color: white;
+    margin: 0 auto;
+    max-width: 600px;
 }
 
-.auto-detail h2 {
-    color: #282c34;
+.maintenance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.maintenance-table th, .maintenance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.auto-detail input {
+    padding: 10px;
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+}
+
+.auto-detail button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .back-link {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #282c34;
-    color: white;
+    color: #007BFF;
     text-decoration: none;
-    border-radius: 5px;
 }
 
 .back-link:hover {
-    background-color: #444;
+    text-decoration: underline;
 }
