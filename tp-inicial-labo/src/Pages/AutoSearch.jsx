@@ -1,14 +1,23 @@
 // AutoSearch.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AutoCard from './AutoCard';
 import './AutoSearch.css'; 
-
-// Importamos los datos de autos desde el JSON
-import autosData from '../data/autos.json';
+import axios from 'axios';
 
 function AutoSearch() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredAutos, setFilteredAutos] = useState(autosData);
+    const [filteredAutos, setFilteredAutos] = useState([]);
+
+    useEffect(() => {
+        // Llamada a la API para obtener los autos
+        axios.get('http://localhost:5000/api/autos')
+            .then(response => {
+                setFilteredAutos(response.data);
+            })
+            .catch(error => {
+                console.error('Error al obtener los autos:', error);
+            });
+    }, []);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -16,9 +25,9 @@ function AutoSearch() {
     };
 
     const filterAutos = (term) => {
-        const filtered = autosData.filter(auto =>
+        const filtered = filteredAutos.filter(auto =>
             auto.marca.toLowerCase().includes(term.toLowerCase()) ||
-            auto.numeroSerie.toLowerCase().includes(term.toLowerCase())
+            auto.modelo.toLowerCase().includes(term.toLowerCase())
         );
         setFilteredAutos(filtered);
     };
