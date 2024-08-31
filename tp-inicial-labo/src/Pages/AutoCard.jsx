@@ -8,7 +8,7 @@ function AutoCard({ auto }) {
             <h3>{auto.marca} {auto.modelo}</h3>
             <p><strong>Año:</strong> {auto.anio}</p>
             <p><strong>Kilometraje:</strong> {auto.kilometraje} km</p>
-          {/* <Link to={`/autos/${auto.id}`} className="detail-link">Ver detalles</Link>*/}  
+        <Link to={`/autos/${auto.id}`} className="detail-link">Ver detalles</Link>
         </div>
     );
 }
