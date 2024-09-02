@@ -1,12 +1,50 @@
 .auto-search-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
+    min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    padding: 5% 20%;
+    background-color: #940b0b;
+    margin: 0;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url("Images/Mecanicos-certificados-en-nuestras-marcas.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    box-sizing: border-box; flex: 1; /* Asegura que el contenedor principal ocupe el espacio disponible */
+    background-attachment: fixed;
 }
 
 .auto-search-input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    text-align: center;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    max-width: 400px;
+    
+}
+
+
+h2{ 
+    white-space: nowrap;
+    font-size: xx-large;
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0;
+
 }

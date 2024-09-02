@@ -7,6 +7,9 @@ function Navbar() {
         <nav className="navbar">
             <ul className="navbar-list">
                 <li className="navbar-item">
+                    <Link to="/" className="navbar-link">Inicio</Link>
+                </li>
+                <li className="navbar-item">
                     <Link to="/" className="navbar-link">Búsqueda de Autos</Link>
                 </li>
                 <li className="navbar-item">
