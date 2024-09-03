@@ -82,6 +82,21 @@ app.post('/api/autos/:id/mantenimientos', (req, res) => {
     });
 });
 
+// Endpoint para agregar un nuevo auto
+app.post('/api/autos', (req, res) => {
+    const { marca, modelo, anio, kilometraje, nro_patente, codigo_qr } = req.body;
+    const query = 'INSERT INTO autos (marca, modelo, anio, kilometraje, nro_patente, codigo_qr) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(query, [marca, modelo, anio, kilometraje, nro_patente, codigo_qr], (err, results) => {
+        if (err) {
+            console.error('Error al agregar auto:', err);
+            res.status(500).json({ error: 'Error al agregar auto' });
+            return;
+        }
+        res.json({ id: results.insertId, marca, modelo, anio, kilometraje, nro_patente, codigo_qr });
+    });
+});
+
+
 // Iniciar el servidor
 const PORT = 5000;
 app.listen(PORT, () => {

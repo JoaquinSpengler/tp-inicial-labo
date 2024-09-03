@@ -17,8 +17,11 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mysql2": "^3.11.0",
+    "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-qr-code": "^2.0.15",
+    "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
