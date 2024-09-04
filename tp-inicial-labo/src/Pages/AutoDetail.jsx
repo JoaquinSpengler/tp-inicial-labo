@@ -62,7 +62,7 @@ function AutoDetail() {
 
     return (
         <div className="auto-detail">
-            <h2>Detalles del Auto</h2>
+            <h2 id="titulo-h2" >Detalles del Auto</h2>
             <h3>{auto.marca} {auto.modelo}</h3>
             <p><strong>Año:</strong> {auto.anio}</p>
             <p><strong>Kilometraje:</strong> {auto.kilometraje} km</p>

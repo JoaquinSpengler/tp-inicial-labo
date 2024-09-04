@@ -4,6 +4,7 @@
     background-color: white;
     margin: 0 auto;
     max-width: 600px;
+    color:black;
 }
 
 .maintenance-table {
@@ -42,3 +43,5 @@
 .back-link:hover {
     text-decoration: underline;
 }
+
+.titulo-h2{ color: black}

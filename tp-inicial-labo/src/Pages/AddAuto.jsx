@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-//import QRCode from "react-qr-code"; // Biblioteca para generar QR
+import QRCode from 'react-qr-code';
+
 
 function AddAuto() {
     const [autoData, setAutoData] = useState({
@@ -20,22 +21,32 @@ function AddAuto() {
     };
 
     const handleAddAuto = () => {
-        // Generar un valor de QR único
-        const generatedQrCode = `QR-${autoData.marca}-${autoData.modelo}-${Date.now()}`;
-        setQrCodeValue(generatedQrCode);
+        const patente = autoData.nro_patente;
+        setQrCodeValue(patente);  // Asignar la patente como valor del QR
 
         // Enviar los datos del auto al servidor
         axios.post('http://localhost:5000/api/autos', {
             ...autoData,
-            codigo_qr: generatedQrCode,
+            id: patente,  // Usar la patente como ID
+            codigo_qr: patente,  // Usar la patente como valor del QR
         })
-            .then(response => {
-                console.log('Auto agregado:', response.data);
-                navigate('/');
-            })
-            .catch(error => {
-                console.error('Error al agregar auto:', error);
-            });
+        .then(response => {
+            console.log('Auto agregado:', response.data);
+
+            // Enviar el valor del QR al servidor para generar y guardar el QR en la carpeta qr
+            axios.post('http://localhost:5000/api/generateQR', { patente })
+                .then(qrResponse => {
+                    console.log('QR generado y guardado:', qrResponse.data);
+                })
+                .catch(error => {
+                    console.error('Error al generar el QR:', error);
+                });
+
+            navigate('/');
+        })
+        .catch(error => {
+            console.error('Error al agregar auto:', error);
+        });
     };
 
     return (
@@ -78,9 +89,9 @@ function AddAuto() {
             />
             <button onClick={handleAddAuto}>Agregar Auto</button>
 
+            {/* Generar el código QR basado en la patente */}
             {qrCodeValue && (
                 <div>
-                    <h3>Código QR Generado</h3>
                     <QRCode value={qrCodeValue} />
                 </div>
             )}
