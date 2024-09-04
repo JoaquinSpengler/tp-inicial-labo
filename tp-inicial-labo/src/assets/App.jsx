@@ -5,6 +5,7 @@ import AutoDetail from '../Pages/AutoDetail';
 import MechanicManagement from '../Pages/MechanicManagement';
 import Navbar from '../components/NavBar';
 import AddAuto from '../Pages/Addauto';
+import QRScanner from '../Pages/QRScanner';
 //import ScanQR from '../Pages/ScanQR';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
                       { <Route path="/autos/:id" element={<AutoDetail />} />}  
                         <Route path="/gestion-mecanicos" element={<MechanicManagement />} />
                         <Route path="/agregar-auto" element={<AddAuto />} />
+                        <Route path="/escanear-qr" element={<QRScanner />} /> 
                     </Routes>
                 </Router>
             </main>
