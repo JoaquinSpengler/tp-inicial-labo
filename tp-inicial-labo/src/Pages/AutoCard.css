@@ -1,11 +1,15 @@
 .auto-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    background-color: #940b0b;
+    
+        background-color: rgba(209, 0, 0, 0.8);
+        padding: 15px;
+        margin: 10px 0;
+        border: 2px solid #c20000;
+        border-radius: 5px;
+        width: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-family: 'Roboto', sans-serif;
+        font-size: large;
+    
 }
 
 .detail-link {
