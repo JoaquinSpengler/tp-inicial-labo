@@ -1,14 +1,9 @@
-.auto-search-container {
-    min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
-    display: flex;
-    flex-direction: column;
-    padding: 5% 20%;
-    background-color: #940b0b;
+* {
     margin: 0;
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
+    padding: 0;
+}
+
+body {
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.5),
@@ -18,13 +13,40 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 1em;
-    color: rgb(255, 255, 255);
-    box-sizing: border-box; flex: 1; /* Asegura que el contenedor principal ocupe el espacio disponible */
-    background-attachment: fixed;
 }
 
+/* Contenedor principal */
+.auto-search-container {
+    display: flex;
+    flex-direction: column; /* Para alinear los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    height: calc(100vh ); /* Ajuste para compensar la barra de navegación */
+    padding: 20px;
+    margin-top: 60px; /* Compensar la altura de la barra de navegación */
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    width: 100%; /* Hace que el contenedor use el ancho completo posible */
+
+}
+
+/* Contenedor de búsqueda */
+.search-add-container {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en una columna (uno debajo del otro) */
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 10px; /* Espacio entre los elementos */
+    max-width: 600px; /* Ajusta el ancho máximo para que el contenedor no sea demasiado ancho */
+    width: 100%; /* Hace que el contenedor use el ancho completo posible */
+    margin-bottom: 20px; /* Espacio debajo del contenedor de búsqueda */
+}
+
+.buttons-add-search-container{
+    flex-direction: row;
+    gap: 30px;
+}
 .auto-search-input {
     width: 100%;
     font-family: 'Roboto', sans-serif;
@@ -36,47 +58,6 @@
     border-radius: 5px;
     font-size: 1rem;
     max-width: 400px;
-    
-}
-
-
-h2{ 
-    white-space: nowrap;
-    font-size: xx-large;
-    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
-    padding: 0;
-
-}
-
-.search-add-container {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espacio entre la barra de búsqueda y el botón */
-}
-
-.add-auto-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.add-auto-button:hover {
-    background-color: #0056b3;
-}
-
-.search-add-container {
-    display: flex;
-    gap: 10px; /* Espacio entre los botones y el input */
-    margin-bottom: 20px;
-}
-
-.auto-search-input {
-    flex: 1;
 }
 
 .add-auto-button, .scan-qr-button {
@@ -87,11 +68,20 @@ h2{
 }
 
 .add-auto-button {
-    background-color: #4CAF50;
+    background-color: #d30000;
     color: white;
 }
 
+.add-auto-button:hover {
+    background-color: #b30000;
+}
+
 .scan-qr-button {
-    background-color: #008CBA;
+    background-color: #5c5c5c;
     color: white;
 }
+
+.scan-qr-button:hover {
+    background-color: #414141;
+}
+

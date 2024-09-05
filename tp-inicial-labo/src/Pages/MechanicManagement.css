@@ -1,15 +1,25 @@
-.mechanic-management-container {
-
-    min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
-    display: flex;
-    flex-direction: column;
-    padding: 5% 20%;
-    background-color: #940b0b;
+* {
     margin: 0;
-    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box; /* Incluye el relleno y borde en el ancho y alto */
+}
+
+/* Barra de navegación fija */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #333;
+ 
+    display: flex;
     align-items: center;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
+    padding: 0 20px;
+    color: #fff;
+}
+
+body{
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.5),
@@ -19,14 +29,25 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+/* Contenedor principal */
+.mechanic-management-container {
+    min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    padding: 5% 20%;
+    margin-top: 60px; /* Añade un margen superior para evitar que el contenido se superponga con la barra de navegación */
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-size: 1em;
     color: rgb(255, 255, 255);
-    box-sizing: border-box; flex: 1; /* Asegura que el contenedor principal ocupe el espacio disponible */
+    flex: 1; /* Asegura que el contenedor principal ocupe el espacio disponible */
     background-attachment: fixed;
-    
-    
-    
 }
 
 .mechanic-search-input {
@@ -40,8 +61,6 @@
     border-radius: 5px;
     font-size: 1rem;
     max-width: 400px;
-    
-    
 }
 
 .add-mechanic-button {
@@ -75,15 +94,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
     font-size: large;
-    
 }
 
-h2{ 
+h2 {
     white-space: nowrap;
-    font-size:2em;
+    font-size: 2em;
     text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
     margin: 0;
     padding: 0;
-
 }
-

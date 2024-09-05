@@ -52,8 +52,9 @@ function AutoSearch() {
         navigate('/escanear-qr');
     };
 
-    return (
-        <div className="auto-search-container">
+return (
+    <div className="auto-search-container">
+    
             <h2>Búsqueda de Autos</h2>
             <div className="search-add-container">
                 <input
@@ -63,6 +64,9 @@ function AutoSearch() {
                     onChange={handleSearchChange}
                     className="auto-search-input"
                 />
+            </div>
+            
+            <div className='buttons-search-add-container'>
                 <button onClick={handleAddAuto} className="add-auto-button">
                     Agregar Auto
                 </button>
@@ -70,7 +74,8 @@ function AutoSearch() {
                     Escanear QR
                 </button>
             </div>
-            <div>
+      
+            
                 {filteredAutos.length > 0 ? (
                     filteredAutos.map(auto => (
                         <AutoCard key={auto.id} auto={auto} />
@@ -79,7 +84,7 @@ function AutoSearch() {
                     <p>No se encontraron autos.</p>
                 )}
             </div>
-        </div>
+            
     );
 }
 

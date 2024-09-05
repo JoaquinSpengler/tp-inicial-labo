@@ -13,6 +13,10 @@
     max-width: 100%;
     align-items: center; /* Centra los elementos horizontalmente */
     justify-content: center; /* Centra los elementos verticalmente */
+    position: fixed;
+    top: 0; /* Posición en la parte superior */
+    left: 0; /* Alinea la barra a la izquierda */
+    z-index: 1000; 
 }
 
 .navbar-list {

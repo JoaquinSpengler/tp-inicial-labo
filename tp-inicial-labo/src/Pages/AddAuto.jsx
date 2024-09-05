@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'react-qr-code';  // Biblioteca para generar QR
 import { toPng } from 'html-to-image'; // Para convertir a imagen y descargar
+import './AddAuto.css';
 
 function AddAuto() {
     const [autoData, setAutoData] = useState({
