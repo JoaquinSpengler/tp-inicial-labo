@@ -68,3 +68,30 @@ h2{
 .add-auto-button:hover {
     background-color: #0056b3;
 }
+
+.search-add-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones y el input */
+    margin-bottom: 20px;
+}
+
+.auto-search-input {
+    flex: 1;
+}
+
+.add-auto-button, .scan-qr-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-auto-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.scan-qr-button {
+    background-color: #008CBA;
+    color: white;
+}

@@ -21,6 +21,7 @@ function App() {
                         <Route path="/gestion-mecanicos" element={<MechanicManagement />} />
                         <Route path="/agregar-auto" element={<AddAuto />} />
                         <Route path="/escanear-qr" element={<QRScanner />} /> 
+                        <Route path="/autos/patente/:patente" element={<AutoDetail />} />
                     </Routes>
                 </Router>
             </main>

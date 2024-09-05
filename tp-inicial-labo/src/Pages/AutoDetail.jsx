@@ -7,12 +7,7 @@ function AutoDetail() {
     const { id } = useParams();  // Obtiene el ID del auto de la URL
     const [auto, setAuto] = useState(null);
     const [mantenimientos, setMantenimientos] = useState([]);
-    const [newMantenimiento, setNewMantenimiento] = useState({
-        mecanico_id: '', // Añadido: campo para mecánico
-        fecha: '',
-        tipo_de_mantenimiento: '',
-        descripcion: ''
-    });
+    const [newMantenimiento, setNewMantenimiento] = useState({ fecha: '', tipo_de_mantenimiento: '', descripcion: '' });
 
     useEffect(() => {
         // Obtener los detalles del auto desde el backend
@@ -48,7 +43,7 @@ function AutoDetail() {
         axios.post(`http://localhost:5000/api/autos/${id}/mantenimientos`, mantenimientoData)
             .then(response => {
                 setMantenimientos([...mantenimientos, response.data]);
-                setNewMantenimiento({ mecanico_id: '', fecha: '', tipo_de_mantenimiento: '', descripcion: '' });
+                setNewMantenimiento({ fecha: '', tipo_de_mantenimiento: '', descripcion: '' });
             })
             .catch(error => {
                 console.error('Error al agregar mantenimiento:', error);
@@ -62,12 +57,11 @@ function AutoDetail() {
 
     return (
         <div className="auto-detail">
-            <h2 id="titulo-h2" >Detalles del Auto</h2>
+            <h2>Detalles del Auto</h2>
             <h3>{auto.marca} {auto.modelo}</h3>
             <p><strong>Año:</strong> {auto.anio}</p>
             <p><strong>Kilometraje:</strong> {auto.kilometraje} km</p>
             <p><strong>Pantente: </strong> {auto.nro_patente}</p>
-            <p><strong>Código QR:</strong> {auto.codigo_qr}</p>
 
             <h3>Historial de Mantenimiento</h3>
             {mantenimientos.length > 0 ? (
@@ -77,7 +71,6 @@ function AutoDetail() {
                             <th>Fecha</th>
                             <th>Tipo de Mantenimiento</th>
                             <th>Descripción</th>
-                            <th>Mecánico</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +79,6 @@ function AutoDetail() {
                                 <td>{item.fecha}</td>
                                 <td>{item.tipo_de_mantenimiento}</td>
                                 <td>{item.descripcion}</td>
-                                <td>{item.mecanico_id}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -96,13 +88,6 @@ function AutoDetail() {
             )}
 
             <h3>Agregar Mantenimiento</h3>
-            <input
-                type="text"
-                name="mecanico_id"
-                placeholder="ID del Mecánico"
-                value={newMantenimiento.mecanico_id}
-                onChange={handleInputChange}
-            />
             <input
                 type="text"
                 name="fecha"

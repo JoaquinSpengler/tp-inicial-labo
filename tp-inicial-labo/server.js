@@ -84,19 +84,88 @@ app.post('/api/autos/:id/mantenimientos', (req, res) => {
 
 // Endpoint para agregar un nuevo auto
 app.post('/api/autos', (req, res) => {
-    const { marca, modelo, anio, kilometraje, nro_patente, codigo_qr } = req.body;
-    const query = 'INSERT INTO autos (marca, modelo, anio, kilometraje, nro_patente, codigo_qr) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(query, [marca, modelo, anio, kilometraje, nro_patente, codigo_qr], (err, results) => {
+    const { marca, modelo, anio, kilometraje, nro_patente } = req.body;
+    const query = 'INSERT INTO autos (marca, modelo, anio, kilometraje, nro_patente ) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [marca, modelo, anio, kilometraje, nro_patente], (err, results) => {
         if (err) {
             console.error('Error al agregar auto:', err);
             res.status(500).json({ error: 'Error al agregar auto' });
             return;
         }
-        res.json({ id: results.insertId, marca, modelo, anio, kilometraje, nro_patente, codigo_qr });
+        res.json({ id: results.insertId, marca, modelo, anio, kilometraje, nro_patente });
     });
 });
 
 
+// Ruta: GET /api/autos/patente/:nro_patente
+app.get('/api/autos/patente/:nro_patente', async (req, res) => {
+    const nro_patente = req.params.nro_patente;
+
+    try {
+        const auto = await db.query('SELECT * FROM autos WHERE nro_patente = ?', [nro_patente]);
+
+        if (auto.length === 0) {
+            return res.status(404).json({ message: 'Auto no encontrado' });
+        }
+
+        res.json(auto[0]);
+    } catch (error) {
+        console.error('Error al obtener el auto:', error);
+        res.status(500).json({ message: 'Error al obtener el auto' });
+    }
+});
+
+// Ruta: GET /api/autos/patente/:nro_patente/mantenimientos
+app.get('/api/autos/patente/:nro_patente/mantenimientos', async (req, res) => {
+    const nro_patente = req.params.nro_patente;
+
+    try {
+        // Buscar el ID del auto por su patente
+        const auto = await db.query('SELECT id FROM autos WHERE nro_patente = ?', [nro_patente]);
+
+        if (auto.length === 0) {
+            return res.status(404).json({ message: 'Auto no encontrado' });
+        }
+
+        const auto_id = auto[0].id;
+
+        // Obtener el historial de mantenimiento usando el ID del auto
+        const mantenimientos = await db.query('SELECT * FROM historial_mantenimiento WHERE auto_id = ?', [auto_id]);
+
+        res.json(mantenimientos);
+    } catch (error) {
+        console.error('Error al obtener el historial de mantenimiento:', error);
+        res.status(500).json({ message: 'Error al obtener el historial de mantenimiento' });
+    }
+});
+
+// Ruta: POST /api/autos/patente/:nro_patente/mantenimientos
+app.post('/api/autos/patente/:nro_patente/mantenimientos', async (req, res) => {
+    const nro_patente = req.params.nro_patente;
+    const { mecanico_id, fecha, tipo_de_mantenimiento, descripcion } = req.body;
+
+    try {
+        // Buscar el ID del auto por su patente
+        const auto = await db.query('SELECT id FROM autos WHERE nro_patente = ?', [nro_patente]);
+
+        if (auto.length === 0) {
+            return res.status(404).json({ message: 'Auto no encontrado' });
+        }
+
+        const auto_id = auto[0].id;
+
+        // Insertar el nuevo registro de mantenimiento
+        await db.query(
+            'INSERT INTO historial_mantenimiento (auto_id, mecanico_id, fecha, tipo_de_mantenimiento, descripcion) VALUES (?, ?, ?, ?, ?)',
+            [auto_id, mecanico_id, fecha, tipo_de_mantenimiento, descripcion]
+        );
+
+        res.status(201).json({ message: 'Mantenimiento agregado exitosamente' });
+    } catch (error) {
+        console.error('Error al agregar el mantenimiento:', error);
+        res.status(500).json({ message: 'Error al agregar el mantenimiento' });
+    }
+});
 
 
 // Iniciar el servidor

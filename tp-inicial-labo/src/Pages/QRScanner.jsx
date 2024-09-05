@@ -1,22 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
-import jsQR from 'jsqr'; // Importar jsQR
+import jsQR from 'jsqr';
+import { useNavigate } from 'react-router-dom';
 
 const QRScanner = () => {
   const [error, setError] = useState(null);
-  const videoRef = useRef(null); // Referencia para el video
-  const canvasRef = useRef(null); // Canvas para procesar la imagen
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
   const [stream, setStream] = useState(null);
+  const navigate = useNavigate();
 
   const encenderCamara = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
-        videoRef.current.hidden = false; // Mostrar el video si el stream es exitoso
+        videoRef.current.hidden = false;
       }
-      setStream(mediaStream); // Guardar el stream para cerrarlo después
+      setStream(mediaStream);
 
-      requestAnimationFrame(scan); // Iniciar el escaneo una vez la cámara esté encendida
+      requestAnimationFrame(scan);
     } catch (err) {
       setError('Error al acceder a la cámara');
       console.error('Error al acceder a la cámara', err);
@@ -28,36 +30,37 @@ const QRScanner = () => {
       const canvas = canvasRef.current;
       const context = canvas.getContext('2d');
 
-      // Definir el tamaño del canvas para que coincida con el video
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
 
-      // Dibujar el frame actual del video en el canvas
       context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-      // Obtener los datos de imagen del canvas
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-      // Decodificar el QR usando jsQR
       const code = jsQR(imageData.data, imageData.width, imageData.height);
       if (code) {
-        console.log('QR Code detectado:', code.data); // Log del QR detectado
+        console.log('QR Code detectado:', code.data);
+
+        // Extraer solo la parte final del código QR para usar como ID
+        const id = code.data.split('/').pop(); 
+
+        // Redirigir a la página de detalles del auto
+        navigate(`/autos/${id}`);
+        cerrarCamara();
       }
     }
 
-    // Repetir el escaneo
     requestAnimationFrame(scan);
   };
 
   const cerrarCamara = () => {
     if (stream) {
-      // Detener todos los tracks del stream si existen
       stream.getTracks().forEach(track => track.stop());
-      setStream(null); // Limpiar el stream
+      setStream(null);
     }
     if (videoRef.current) {
-      videoRef.current.srcObject = null; // Limpiar el video
-      videoRef.current.hidden = true; // Ocultar el video
+      videoRef.current.srcObject = null;
+      videoRef.current.hidden = true;
     }
   };
 
@@ -65,7 +68,7 @@ const QRScanner = () => {
     encenderCamara();
 
     return () => {
-      cerrarCamara(); // Asegurarse de apagar la cámara cuando el componente se desmonte
+      cerrarCamara();
     };
   }, []);
 
@@ -73,7 +76,6 @@ const QRScanner = () => {
     <div>
       {error && <p>{error}</p>}
       <video ref={videoRef} hidden autoPlay />
-      {/* Canvas oculto para procesar la imagen del video */}
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <button onClick={cerrarCamara}>Cerrar Cámara</button>
     </div>

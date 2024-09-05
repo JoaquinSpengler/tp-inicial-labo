@@ -47,6 +47,11 @@ function AutoSearch() {
         navigate('/agregar-auto');
     };
 
+    const handleScanQR = () => {
+        // Redirigir a la página de escanear QR
+        navigate('/escanear-qr');
+    };
+
     return (
         <div className="auto-search-container">
             <h2>Búsqueda de Autos</h2>
@@ -60,6 +65,9 @@ function AutoSearch() {
                 />
                 <button onClick={handleAddAuto} className="add-auto-button">
                     Agregar Auto
+                </button>
+                <button onClick={handleScanQR} className="scan-qr-button">
+                    Escanear QR
                 </button>
             </div>
             <div>
