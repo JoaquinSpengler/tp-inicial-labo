@@ -4,6 +4,20 @@
     box-sizing: border-box; /* Incluye el relleno y borde en el ancho y alto */
 }
 
+body{
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url("Images/Mecanicos-certificados-en-nuestras-marcas.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Barra de navegación fija */
 .navbar {
     width: 100%;
@@ -19,20 +33,6 @@
     color: #fff;
 }
 
-body{
-    background-image: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-    ),
-    url("Images/Mecanicos-certificados-en-nuestras-marcas.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    align-items: center;
-    justify-content: center;
-}
-
 /* Contenedor principal */
 .mechanic-management-container {
     min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
@@ -40,7 +40,7 @@ body{
     flex-direction: column;
     padding: 20% 20%;
     margin-top: 60px; /* Añade un margen superior para evitar que el contenido se superponga con la barra de navegación */
-    max-width: 100%;
+    max-width: 100vh;
     align-items: center;
     text-align: center;
     font-family: 'Roboto', sans-serif;

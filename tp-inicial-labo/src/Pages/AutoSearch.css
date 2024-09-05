@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -13,34 +14,51 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Contenedor principal */
-.auto-search-container {
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #333;
+    height: 100px;
     display: flex;
-    flex-direction: column; /* Para alinear los elementos en columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
-    height: calc(100vh ); /* Ajuste para compensar la barra de navegación */
-    padding: 20px;
-    margin-top: 60px; /* Compensar la altura de la barra de navegación */
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+}
+
+
+.auto-search-container {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    padding: 20% 20%;
+    margin-top: 60px; /
+    max-width: 100vh;
+    align-items: center;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
     color: rgb(255, 255, 255);
-    width: 100%; /* Hace que el contenedor use el ancho completo posible */
-
+    flex: 1; 
+    background-attachment: fixed;
 }
 
-/* Contenedor de búsqueda */
+
 .search-add-container {
     display: flex;
-    flex-direction: column; /* Alinea los elementos en una columna (uno debajo del otro) */
-    align-items: center; /* Centra los elementos horizontalmente */
-    gap: 10px; /* Espacio entre los elementos */
-    max-width: 600px; /* Ajusta el ancho máximo para que el contenedor no sea demasiado ancho */
-    width: 100%; /* Hace que el contenedor use el ancho completo posible */
-    margin-bottom: 20px; /* Espacio debajo del contenedor de búsqueda */
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+    width: 100%; 
+    margin-bottom: 20px; 
 }
 
 .buttons-add-search-container{
