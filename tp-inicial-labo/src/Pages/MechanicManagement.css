@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Incluye el relleno y borde en el ancho y alto */
+    box-sizing: border-box;
 }
 
 body{
@@ -18,7 +18,7 @@ body{
     justify-content: center;
 }
 
-/* Barra de navegación fija */
+
 .navbar {
     width: 100%;
     position: fixed;
@@ -33,13 +33,13 @@ body{
     color: #fff;
 }
 
-/* Contenedor principal */
+
 .mechanic-management-container {
-    min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     padding: 20% 20%;
-    margin-top: 60px; /* Añade un margen superior para evitar que el contenido se superponga con la barra de navegación */
+    margin-top: 60px;
     max-width: 100vh;
     align-items: center;
     text-align: center;
@@ -48,7 +48,7 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-size: 1em;
     color: rgb(255, 255, 255);
-    flex: 1; /* Asegura que el contenedor principal ocupe el espacio disponible */
+    flex: 1; 
     background-attachment: fixed;
 }
 
