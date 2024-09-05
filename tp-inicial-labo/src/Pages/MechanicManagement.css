@@ -12,7 +12,7 @@
     left: 0;
     z-index: 1000;
     background-color: #333;
- 
+    height: 100px;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -29,6 +29,8 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Contenedor principal */
@@ -36,7 +38,7 @@ body{
     min-height: 100vh; /* Hace que el cuerpo de la página ocupe al menos el 100% de la altura de la ventana */
     display: flex;
     flex-direction: column;
-    padding: 5% 20%;
+    padding: 20% 20%;
     margin-top: 60px; /* Añade un margen superior para evitar que el contenido se superponga con la barra de navegación */
     max-width: 100%;
     align-items: center;
