@@ -69,16 +69,16 @@ app.get('/api/autos/:id/mantenimientos', (req, res) => {
 // Endpoint para agregar un nuevo mantenimiento
 app.post('/api/autos/:id/mantenimientos', (req, res) => {
     const autoId = req.params.id;
-    const { mecanico_id, fecha, tipo_de_mantenimiento, descripcion } = req.body;
+    const { fecha, tipo_de_mantenimiento, descripcion } = req.body;
 
-    const query = 'INSERT INTO historial_mantenimiento (auto_id, mecanico_id, fecha, tipo_de_mantenimiento, descripcion) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [autoId, mecanico_id, fecha, tipo_de_mantenimiento, descripcion], (err, results) => {
+    const query = 'INSERT INTO historial_mantenimiento (auto_id, fecha, tipo_de_mantenimiento, descripcion) VALUES (?, ?, ?, ?)';
+    db.query(query, [autoId, fecha, tipo_de_mantenimiento, descripcion], (err, results) => {
         if (err) {
             console.error('Error al agregar mantenimiento:', err);
             res.status(500).json({ error: 'Error al agregar mantenimiento' });
             return;
         }
-        res.json({ id: results.insertId, auto_id: autoId, mecanico_id, fecha, tipo_de_mantenimiento, descripcion });
+        res.json({ id: results.insertId, auto_id: autoId, fecha, tipo_de_mantenimiento, descripcion });
     });
 });
 
@@ -142,22 +142,22 @@ app.get('/api/autos/patente/:nro_patente/mantenimientos', async (req, res) => {
 // Ruta: POST /api/autos/patente/:nro_patente/mantenimientos
 app.post('/api/autos/patente/:nro_patente/mantenimientos', async (req, res) => {
     const nro_patente = req.params.nro_patente;
-    const { mecanico_id, fecha, tipo_de_mantenimiento, descripcion } = req.body;
+    const { fecha, tipo_de_mantenimiento, descripcion } = req.body;
 
     try {
         // Buscar el ID del auto por su patente
-        const auto = await db.query('SELECT id FROM autos WHERE nro_patente = ?', [nro_patente]);
+        const [auto] = await db.query('SELECT id FROM autos WHERE nro_patente = ?', [nro_patente]);
 
-        if (auto.length === 0) {
+        if (!auto || auto.length === 0) {
             return res.status(404).json({ message: 'Auto no encontrado' });
         }
 
-        const auto_id = auto[0].id;
+        const auto_id = auto.id; // Obtener el ID del auto
 
         // Insertar el nuevo registro de mantenimiento
         await db.query(
-            'INSERT INTO historial_mantenimiento (auto_id, mecanico_id, fecha, tipo_de_mantenimiento, descripcion) VALUES (?, ?, ?, ?, ?)',
-            [auto_id, mecanico_id, fecha, tipo_de_mantenimiento, descripcion]
+            'INSERT INTO historial_mantenimiento (auto_id, fecha, tipo_de_mantenimiento, descripcion) VALUES (?, ?, ?, ?)',
+            [auto_id, fecha, tipo_de_mantenimiento, descripcion]
         );
 
         res.status(201).json({ message: 'Mantenimiento agregado exitosamente' });
