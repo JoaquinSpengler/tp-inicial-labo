@@ -5,7 +5,8 @@
       "apellido": "Pérez",
       "telefono": "+123456789",
       "correo_electronico": "juan.perez@example.com",
-      "especialidad": "Motor"
+      "especialidad": "Motor",
+      "habilitado": true
     },
     {
       "id": 2,
@@ -13,7 +14,8 @@
       "apellido": "González",
       "telefono": "+987654321",
       "correo_electronico": "carlos.gonzalez@example.com",
-      "especialidad": "Electricidad"
+      "especialidad": "Electricidad",
+      "habilitado": true
     },
     {
       "id": 3,
@@ -21,7 +23,8 @@
       "apellido": "Lopez",
       "telefono": "+112233445",
       "correo_electronico": "maria.lopez@example.com",
-      "especialidad": "Frenos"
+      "especialidad": "Frenos",
+      "habilitado": true
     }
   ]
   

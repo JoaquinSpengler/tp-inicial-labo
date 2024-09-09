@@ -1,0 +1,22 @@
+
+body{
+    min-width: 100hv;
+}
+.div.contenidos{
+    align-items: center;
+
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    color: white;
+}
+.div.textos{
+    flex-direction: column;
+    color: white;
+}
+
+h2{
+    align-content: first baseline;
+    font-size: 50hv;
+}

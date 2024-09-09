@@ -3,6 +3,7 @@ import AutoCard from './AutoCard';
 import './AutoSearch.css'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir
+import Navbar from '../components/NavBar';
 
 function AutoSearch() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -53,6 +54,7 @@ function AutoSearch() {
     };
 
 return (
+    
     <div className="auto-search-container">
     
             <h2>Búsqueda de Autos</h2>

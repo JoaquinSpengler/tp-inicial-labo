@@ -10,7 +10,7 @@ function Navbar() {
                     <Link to="/" className="navbar-link">Inicio</Link>
                 </li>
                 <li className="navbar-item">
-                    <Link to="/" className="navbar-link">Búsqueda de Autos</Link>
+                    <Link to="/gestion-autos" className="navbar-link">Búsqueda de Autos</Link>
                 </li>
                 <li className="navbar-item">
                     <Link to="/gestion-mecanicos" className="navbar-link">Gestión de Mecánicos</Link>
