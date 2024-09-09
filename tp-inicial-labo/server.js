@@ -1,6 +1,8 @@
 import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -21,7 +23,7 @@ const cloudDbConfig = {
     host: 'taller-tpinicial-labo.e.aivencloud.com',
     user: 'avnadmin',
     port: 13205,
-    password: 'AVNS_a_KOa93VEqCH1Gr8s9O',
+    password: process.env.DB_PASSWORD,
     database: 'tallerdb'
 };
 
