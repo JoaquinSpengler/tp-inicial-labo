@@ -6,7 +6,7 @@ import MechanicManagement from '../Pages/MechanicManagement';
 import Navbar from '../components/NavBar';
 import AddAuto from '../Pages/AddAuto';
 import QRScanner from '../Pages/QRScanner';
-import Home from '../Pages/home';
+import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 
 const App = () => {
@@ -31,9 +31,7 @@ const App = () => {
             <Route path="/autos/:id" element={<AutoDetail />} />
             <Route path="/gestion-mecanicos" element={<MechanicManagement />} />
             <Route path="/agregar-auto" element={ <AddAuto /> } />
-            <Route path="/escanear-qr" element={<QRScanner />} />
-            <Route path="/autos/patente/:patente" element={<AutoDetail />} />
-           
+            <Route path="/escanear-qr" element={<QRScanner />} />           
           </Routes>
         </Router>
       </main>
