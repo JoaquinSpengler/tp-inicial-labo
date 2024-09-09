@@ -6,23 +6,58 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configurar la conexión a la base de datos MySQL
-const db = mysql.createConnection({
+// Configuración de conexión a la base de datos local
+
+const localDbConfig = {
     host: 'localhost',
     user: 'root',
     port: 3306,
     password: '1234',
     database: 'tallerdb'
-});
+};
 
-// Conectar a la base de datos
-db.connect((err) => {
-    if (err) {
-        console.error('Error conectando a la base de datos:', err);
-        return;
-    }
-    console.log('Conectado a la base de datos MySQL');
-});
+// Configuración de conexión a la base de datos en la nube (Aiven)
+const cloudDbConfig = {
+    host: 'taller-tpinicial-labo.e.aivencloud.com',
+    user: 'avnadmin',
+    port: 13205,
+    password: 'AVNS_a_KOa93VEqCH1Gr8s9O',
+    database: 'tallerdb'
+};
+
+// Función para conectar a la base de datos
+function connectToDatabase(config) {
+    return new Promise((resolve, reject) => {
+        const db = mysql.createConnection(config);
+
+        db.connect((err) => {
+            if (err) {
+                console.error(`Error conectando a la base de datos en ${config.host}:`, err);
+                reject(err);
+            } else {
+                console.log(`Conectado a la base de datos MySQL en ${config.host}`);
+                resolve(db);
+            }
+        });
+    });
+}
+
+// Intentar conectar a la base de datos local primero, y si falla, conectar a la nube
+let db;
+connectToDatabase(cloudDbConfig)
+    .then((connection) => {
+        db = connection;
+    })
+    .catch(() => {
+        // Si la conexión local falla, intentar la conexión a la nube
+        return connectToDatabase(localDbConfig);
+    })
+    .then((connection) => {
+        if (connection) db = connection;
+    })
+    .catch((err) => {
+        console.error('No se pudo conectar a ninguna base de datos', err);
+    });
 
 // Endpoint para obtener todos los autos
 app.get('/api/autos', (req, res) => {
@@ -35,6 +70,8 @@ app.get('/api/autos', (req, res) => {
         res.json(results);
     });
 });
+
+// Otros endpoints se mantienen igual...
 
 // Endpoint para obtener un auto por ID
 app.get('/api/autos/:id', (req, res) => {
