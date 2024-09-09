@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start:api": "node server.js",
+    "start:api": "node functions/server.js",
     "start:react": "npm run dev",
     "start": "concurrently \"npm run start:api\" \"npm run start:react\""
   },
@@ -26,6 +26,7 @@
     "react-dom": "^18.3.1",
     "react-qr-code": "^2.0.15",
     "react-router-dom": "^6.26.1",
+    "serverless-http": "^3.2.0",
     "sweetalert2": "^11.13.2"
   },
   "devDependencies": {
