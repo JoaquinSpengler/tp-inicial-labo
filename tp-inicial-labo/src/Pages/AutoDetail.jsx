@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import './AutoDetail.css';
+import { API_BASE_URL } from '../assets/config'; 
+
 
 function AutoDetail() {
     const { id } = useParams();  // Obtiene el ID del auto de la URL
@@ -11,7 +13,7 @@ function AutoDetail() {
 
     useEffect(() => {
         // Obtener los detalles del auto desde el backend
-        axios.get(`http://localhost:5000/api/autos/${id}`)
+        axios.get(`${API_BASE_URL}/autos/${id}`)
             .then(response => {
                 setAuto(response.data);
             })
@@ -20,7 +22,7 @@ function AutoDetail() {
             });
 
         // Obtener el historial de mantenimiento desde el backend
-        axios.get(`http://localhost:5000/api/autos/${id}/mantenimientos`)
+        axios.get(`${API_BASE_URL}/autos/${id}/mantenimientos`)
             .then(response => {
                 setMantenimientos(response.data);
             })
@@ -40,7 +42,7 @@ function AutoDetail() {
         };
 
         // Enviar el nuevo mantenimiento al backend
-        axios.post(`http://localhost:5000/api/autos/${id}/mantenimientos`, mantenimientoData)
+        axios.post(`${API_BASE_URL}/autos/${id}/mantenimientos`, mantenimientoData)
             .then(response => {
                 setMantenimientos([...mantenimientos, response.data]);
                 setNewMantenimiento({ fecha: '', tipo_de_mantenimiento: '', descripcion: '' });

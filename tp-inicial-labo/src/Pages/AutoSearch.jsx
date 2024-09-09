@@ -4,6 +4,7 @@ import './AutoSearch.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir
 import Navbar from '../components/NavBar';
+import { API_BASE_URL } from '../assets/config'; 
 
 function AutoSearch() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -13,7 +14,7 @@ function AutoSearch() {
 
     useEffect(() => {
         // Llamada a la API para obtener los autos
-        axios.get('http://localhost:5000/api/autos')
+        axios.get(`${API_BASE_URL}/autos`)
             .then(response => {
                 setAllAutos(response.data);
                 setFilteredAutos(response.data); // Inicialmente, todos los autos están en la lista filtrada

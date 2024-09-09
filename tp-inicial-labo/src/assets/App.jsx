@@ -4,7 +4,7 @@ import AutoSearch from '../Pages/AutoSearch';
 import AutoDetail from '../Pages/AutoDetail';
 import MechanicManagement from '../Pages/MechanicManagement';
 import Navbar from '../components/NavBar';
-import AddAuto from '../Pages/AddAuto';
+import AddAuto from '../Pages/Addauto';
 import QRScanner from '../Pages/QRScanner';
 import Home from '../Pages/home';
 import Login from '../Pages/Login';

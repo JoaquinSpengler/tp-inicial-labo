@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import QRCode from 'react-qr-code';  // Biblioteca para generar QR
 import { toPng } from 'html-to-image'; // Para convertir a imagen y descargar
 import './AddAuto.css';
+import { API_BASE_URL } from '../assets/config'; 
 
 function AddAuto() {
     const [autoData, setAutoData] = useState({
@@ -24,14 +25,14 @@ function AddAuto() {
 
     const handleAddAuto = () => {
         // Enviar los datos del auto al servidor
-        axios.post('http://localhost:5000/api/autos', {
+        axios.post(`${API_BASE_URL}/autos`, {
             ...autoData,
             codigo_qr: ''  // El backend no necesita este campo, se generará en el frontend
         })
         .then(response => {
             console.log('Auto agregado:', response.data);
             const autoId = response.data.id; // Obtén el ID del nuevo auto
-            const qrUrl = `http://localhost:5173/autos/${autoId}`; // Genera la URL del QR
+            const qrUrl = `${API_BASE_URL}/autos/${autoId}`; // Genera la URL del QR
             setQrCodeValue(qrUrl); // Asigna la URL como valor del QR
             //navigate('/'); // Redirige a la página principal
         })
