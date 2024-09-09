@@ -8,23 +8,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuración de conexión a la base de datos local
-
-const localDbConfig = {
-    host: 'localhost',
-    user: 'root',
-    port: 3306,
-    password: '1234',
-    database: 'tallerdb'
-};
-
 // Configuración de conexión a la base de datos en la nube (Aiven)
 const cloudDbConfig = {
-    host: 'taller-tpinicial-labo.e.aivencloud.com',
-    user: 'avnadmin',
-    port: 13205,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    port: process.env.DB_PORT,
     password: process.env.DB_PASSWORD,
-    database: 'tallerdb'
+    database: process.env.DB_NAME
 };
 
 // Función para conectar a la base de datos
@@ -44,22 +34,19 @@ function connectToDatabase(config) {
     });
 }
 
-// Intentar conectar a la base de datos local primero, y si falla, conectar a la nube
+// Intentar conectar a la base de datos en la nube
 let db;
 connectToDatabase(cloudDbConfig)
     .then((connection) => {
         db = connection;
     })
-    .catch(() => {
-        // Si la conexión local falla, intentar la conexión a la nube
-        return connectToDatabase(localDbConfig);
-    })
-    .then((connection) => {
-        if (connection) db = connection;
-    })
     .catch((err) => {
-        console.error('No se pudo conectar a ninguna base de datos', err);
+        console.error('No se pudo conectar a la base de datos', err);
     });
+
+
+
+
 
 // Endpoint para obtener todos los autos
 app.get('/api/autos', (req, res) => {
