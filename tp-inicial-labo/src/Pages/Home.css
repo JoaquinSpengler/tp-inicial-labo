@@ -1,0 +1,41 @@
+/* Home.css */
+body {
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0;
+  }
+  
+  .conenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alinea los elementos de manera uniforme */
+    height: calc(100vh - 250px); /* Ajusta la altura para considerar la barra de navegación (ajusta la altura según el tamaño real de tu navbar) */
+    padding: 20px;
+    margin-top: 60px; /* Añade un margen superior para evitar que quede debajo de la barra de navegación */
+  }
+  
+  .textos {
+    align-self: flex-start; /* Alinea el texto a la izquierda */
+    color: white;
+    margin-right: 300px; /* Mueve el texto más a la izquierda (ajusta el valor según tus necesidades) */
+
+  }
+  
+  .textos h2 {
+    font-size: 3rem; /* Aumenta el tamaño del título */
+    margin: 0;
+  }
+  
+  .textos p {
+    font-size: 1.5rem; /* Tamaño del subtítulo */
+    margin-top: 10px;
+  }
+  
+  button {
+    align-self: flex-end; /* Alinea el botón a la derecha */
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  

@@ -10,7 +10,7 @@
     font-size: 1.25em; /* Tamaño de fuente */
     box-sizing: border-box; /* Incluye padding en el tamaño total */
     margin-bottom: 0;
-    max-width: 100%;
+    min-width: 100%;
     align-items: center; /* Centra los elementos horizontalmente */
     justify-content: center; /* Centra los elementos verticalmente */
     position: fixed;
