@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import './MechanicManagement.css';
 import Navbar from '../components/NavBar';
+import axios from 'axios';  // Importamos axios para las peticiones
+import { API_BASE_URL } from '../assets/config';  // Importar el URL base de la API
 import { useNavigate } from 'react-router-dom';
-
-// Datos de ejemplo de mecánicos
-import mecanicosData from '../data/mecanicos.json';
-
-const handleAddMechanic = () => {
-    console.log("Agregar nuevo mecánico");
-    // Aquí podrías mostrar un formulario modal o redirigir a una página de creación de mecánicos
-};
 
 function MechanicManagement() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredMecanicos, setFilteredMecanicos] = useState([]);
-    const [selectedMechanicId, setSelectedMechanicId] = useState(null); // Estado para el mecánico seleccionado
+    const [selectedMechanicId, setSelectedMechanicId] = useState(null);
+    const navigate = useNavigate();
 
-    // Cargar datos de mecánicos desde localStorage o usar datos predeterminados
+    // Cargar datos de mecánicos desde la API
     useEffect(() => {
-        const storedMecanicos = JSON.parse(localStorage.getItem('mecanicos')) || mecanicosData;
-        setFilteredMecanicos(storedMecanicos);
+        axios.get(`${API_BASE_URL}/mecanicos`)
+            .then(response => {
+                setFilteredMecanicos(response.data); // Cargar los datos de la API
+            })
+            .catch(error => {
+                console.error('Error al obtener los mecánicos:', error);
+            });
     }, []);
 
     const handleSearchChange = (event) => {
@@ -28,8 +28,7 @@ function MechanicManagement() {
     };
 
     const filterMecanicos = (term) => {
-        const storedMecanicos = JSON.parse(localStorage.getItem('mecanicos')) || mecanicosData;
-        const filtered = storedMecanicos.filter(mecanico =>
+        const filtered = filteredMecanicos.filter(mecanico =>
             mecanico.nombre.toLowerCase().includes(term.toLowerCase()) ||
             mecanico.apellido.toLowerCase().includes(term.toLowerCase())
         );
@@ -37,27 +36,22 @@ function MechanicManagement() {
     };
 
     const handleMechanicSelect = (id) => {
-        setSelectedMechanicId(id); // Seleccionar el mecánico
+        setSelectedMechanicId(id); 
     };
 
     const handleDisableMechanic = () => {
-        // Actualizar el estado del mecánico seleccionado para inhabilitarlo
         const updatedMecanicos = filteredMecanicos.map(mecanico => {
             if (mecanico.id === selectedMechanicId) {
-                return { ...mecanico, habilitado: false }; // Marcar como inhabilitado
+                return { ...mecanico, habilitado: false }; 
             }
             return mecanico;
-        }
-    );
-   
-
-        setFilteredMecanicos(updatedMecanicos); // Actualizar la lista de mecánicos
-        localStorage.setItem('mecanicos', JSON.stringify(updatedMecanicos)); // Guardar en localStorage
-        setSelectedMechanicId(null); // Deseleccionar el mecánico después de inhabilitarlo
+        });
+        setFilteredMecanicos(updatedMecanicos); 
+        setSelectedMechanicId(null); 
     };
 
     const handleAddMechanic = () => {
-        navigate('/agregar-mecanico'); // Ruta de la nueva página para agregar mecánico
+        navigate('/agregar-mecanico'); 
     };
 
     return (
@@ -79,7 +73,7 @@ function MechanicManagement() {
                             key={mecanico.id}
                             className={`mechanic-card ${selectedMechanicId === mecanico.id ? 'selected' : ''}`}
                             onClick={() => handleMechanicSelect(mecanico.id)}
-                            style={{ opacity: mecanico.habilitado ? 1 : 0.5 }} // Estilo visual para inhabilitados
+                            style={{ opacity: mecanico.habilitado ? 1 : 0.5 }}
                         >
                             <p><strong>Nombre:</strong> {mecanico.nombre} {mecanico.apellido}</p>
                             <p><strong>Especialidad:</strong> {mecanico.especialidad}</p>
@@ -93,7 +87,6 @@ function MechanicManagement() {
             <button onClick={handleAddMechanic} className="add-button">
                     Agregar Mecanico
                 </button>
-            {/* Mostrar botón de "Dar de baja" solo si un mecánico ha sido seleccionado */}
             {selectedMechanicId && (
                 <button onClick={handleDisableMechanic} className="remove-button">
                     Dar de baja
