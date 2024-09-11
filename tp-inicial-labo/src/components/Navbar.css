@@ -1,50 +1,78 @@
+/* Estilo de la barra de navegación */
 .navbar {
-    min-height: 10vh; /* Altura mínima de la barra de navegación */
+    min-height: 10vh;
     display: flex;
-    flex-direction: column; /* Flexbox en columna para organizar los elementos */
-    background-color: #d10000; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
-    text-align: center; /* Centrado del texto */
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.25em; /* Tamaño de fuente */
-    box-sizing: border-box; /* Incluye padding en el tamaño total */
-    margin-bottom: 0;
-    min-width: 100%;
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d10000;
+    padding: 10px 20px;
     position: fixed;
-    top: 0; /* Posición en la parte superior */
-    left: 0; /* Alinea la barra a la izquierda */
-    z-index: 1000; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
+/* Lista de navegación */
 .navbar-list {
-    list-style-type: none; /* Elimina los puntos de la lista */
-    margin: 0;
-    padding: 0;
-    display: flex; /* Flexbox para la lista */
-    justify-content: center; /* Centra los elementos de la lista horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-    gap: 20px; /* Espacio entre los elementos */
-}
-
-.navbar-item {
-    margin: 0 15px; /* Espaciado entre los elementos de la barra de navegación */
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    transition: transform 0.3s ease-in-out;
 }
 
 .navbar-link {
-    color: white; /* Color del texto */
-    text-decoration: none; /* Elimina subrayado de enlaces */
-    font-size: 1em; /* Tamaño de fuente */
-    padding: 10px 15px; /* Espaciado interno de los enlaces */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease; /* Efecto de transición para el fondo */
-    display: block; /* Hace que los enlaces sean bloques */
-    text-align: center; /* Centra el texto dentro de los enlaces */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .navbar-link:hover {
-    color: white;
-    background-color: #575757; /* Color de fondo al pasar el ratón */
+    background-color: #575757;
+}
+
+/* Botón Hamburguesa para pantallas pequeñas */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+/* Ocultar la lista en pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #d10000;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-list.navbar-list-open {
+        display: flex;
+    }
+
+    .navbar-item {
+        margin: 10px 0;
+    }
 }

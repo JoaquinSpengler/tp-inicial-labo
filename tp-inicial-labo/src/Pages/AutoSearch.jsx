@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AutoCard from './AutoCard';
 import './AutoSearch.css'; 
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/NavBar';
 import { API_BASE_URL } from '../assets/config'; 
 
@@ -10,7 +10,7 @@ function AutoSearch() {
     const [searchTerm, setSearchTerm] = useState('');
     const [allAutos, setAllAutos] = useState([]); // Estado para todos los autos
     const [filteredAutos, setFilteredAutos] = useState([]);
-    const navigate = useNavigate(); // Inicializar el hook useNavigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Llamada a la API para obtener los autos
@@ -32,10 +32,8 @@ function AutoSearch() {
 
     const filterAutos = (term) => {
         if (term === '') {
-            // Si el término de búsqueda está vacío, mostrar todos los autos
             setFilteredAutos(allAutos);
         } else {
-            // Filtrar autos basándose en el término de búsqueda
             const filtered = allAutos.filter(auto =>
                 auto.marca.toLowerCase().includes(term.toLowerCase()) ||
                 auto.modelo.toLowerCase().includes(term.toLowerCase())
@@ -45,44 +43,45 @@ function AutoSearch() {
     };
 
     const handleAddAuto = () => {
-        // Redirigir a la página de agregar autos
         navigate('/agregar-auto');
     };
 
     const handleScanQR = () => {
-        // Redirigir a la página de escanear QR
         navigate('/escanear-qr');
     };
 
     return (
         <div className="auto-search-container">
-            <div className='columna-1' >
+            <Navbar />
             <h2>Búsqueda de Autos</h2>
             <div className="search-add-container">
                 <input
                     type="text"
-                    placeholder="Buscar por marca o número de serie..."
+                    placeholder="Buscar por marca o modelo..."
                     value={searchTerm}
                     onChange={handleSearchChange}
                     className="auto-search-input"
                 />
+                {/* Botones debajo de la barra de búsqueda */}
+                <div className="buttons-search-add-container">
+                    <button onClick={handleAddAuto} className="add-auto-button">
+                        Agregar Auto
+                    </button>
+                    <button onClick={handleScanQR} className="scan-qr-button">
+                        Escanear QR
+                    </button>
+                </div>
             </div>
-            {filteredAutos.length > 0 ? (
-                filteredAutos.map((auto) => (
-                    <AutoCard key={auto.id} auto={auto} />
-                ))
-            ) : (
-                <p>No se encontraron autos.</p>
-            )}
-            </div>
-            {/* Ajustar el contenedor de botones */}
-            <div className="buttons-search-add-container">
-                <button onClick={handleAddAuto} className="add-auto-button">
-                    Agregar Auto
-                </button>
-                <button onClick={handleScanQR} className="scan-qr-button">
-                    Escanear QR
-                </button>
+
+            {/* Mostrar autos filtrados */}
+            <div className="auto-card-list">
+                {filteredAutos.length > 0 ? (
+                    filteredAutos.map(auto => (
+                        <AutoCard key={auto.id} auto={auto} />
+                    ))
+                ) : (
+                    <p>No se encontraron autos.</p>
+                )}
             </div>
         </div>
     );

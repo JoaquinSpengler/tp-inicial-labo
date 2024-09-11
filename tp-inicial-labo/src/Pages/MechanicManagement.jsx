@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 function MechanicManagement() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredMecanicos, setFilteredMecanicos] = useState([]);
-    const [selectedMechanicId, setSelectedMechanicId] = useState(null);
     const navigate = useNavigate();
 
     // Cargar datos de mecánicos desde la API
@@ -23,8 +22,9 @@ function MechanicManagement() {
     }, []);
 
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-        filterMecanicos(event.target.value);
+        const term = event.target.value;
+        setSearchTerm(term);
+        filterMecanicos(term);
     };
 
     const filterMecanicos = (term) => {
@@ -35,21 +35,6 @@ function MechanicManagement() {
         setFilteredMecanicos(filtered);
     };
 
-    const handleMechanicSelect = (id) => {
-        setSelectedMechanicId(id); 
-    };
-
-    const handleDisableMechanic = () => {
-        const updatedMecanicos = filteredMecanicos.map(mecanico => {
-            if (mecanico.id === selectedMechanicId) {
-                return { ...mecanico, habilitado: false }; 
-            }
-            return mecanico;
-        });
-        setFilteredMecanicos(updatedMecanicos); 
-        setSelectedMechanicId(null); 
-    };
-
     const handleAddMechanic = () => {
         navigate('/agregar-mecanico'); 
     };
@@ -57,41 +42,35 @@ function MechanicManagement() {
     return (
         <div className="mechanic-management-container">
             <Navbar />
-            <h2>Gestión de Mecánicos</h2>
-            <input
-                type="text"
-                placeholder="Buscar por nombre o apellido..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="mechanic-search-input"
-            />
+            <h2 className="title">Gestión de Mecánicos</h2>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Buscar por nombre o apellido..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="mechanic-search-input"
+                />
+                <button onClick={handleAddMechanic} className="add-button">
+                    Agregar Mecánico
+                </button>
+            </div>
             
             <div className="mechanic-list">
                 {filteredMecanicos.length > 0 ? (
                     filteredMecanicos.map(mecanico => (
                         <div
                             key={mecanico.id}
-                            className={`mechanic-card ${selectedMechanicId === mecanico.id ? 'selected' : ''}`}
-                            onClick={() => handleMechanicSelect(mecanico.id)}
-                            style={{ opacity: mecanico.habilitado ? 1 : 0.5 }}
+                            className="mechanic-card"
                         >
                             <p><strong>Nombre:</strong> {mecanico.nombre} {mecanico.apellido}</p>
                             <p><strong>Especialidad:</strong> {mecanico.especialidad}</p>
-                            {!mecanico.habilitado && <p style={{ color: 'red' }}>Inhabilitado</p>}
                         </div>
                     ))
                 ) : (
                     <p>No se encontraron mecánicos.</p>
                 )}
             </div>
-            <button onClick={handleAddMechanic} className="add-button">
-                    Agregar Mecanico
-                </button>
-            {selectedMechanicId && (
-                <button onClick={handleDisableMechanic} className="remove-button">
-                    Dar de baja
-                </button>
-            )}
         </div>
     );
 }

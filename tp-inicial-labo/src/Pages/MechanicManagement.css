@@ -1,10 +1,12 @@
+/* Reset de estilos generales */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+/* Estilo del fondo */
+body {
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.5),
@@ -14,80 +16,75 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    align-items: center;
+    font-family: 'Roboto', sans-serif;
     justify-content: flex-start;
+    background-attachment: fixed;
 }
 
-
-
+/* Contenedor principal de la gestión de mecánicos */
 .mechanic-management-container {
-    height: calc(100vh - 300px); /* Ajusta la altura para considerar la barra de navegación (ajusta la altura según el tamaño real de tu navbar) */
-
-    display: flex;
-    flex-direction: column; /* Alinea los botones y resultados en fila */
-    justify-content: flex-start /* Alinea el contenido hacia la izquierda */ !important;
-    align-items: flex-start !important;
-    min-height: 100vh;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    width: 70vh; /* Ajusta el ancho del contenedor principal */
-    margin-left: 15%; /* Centra el contenedor en la página */
     color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 80px; /* Añade un margen superior para evitar que quede debajo de la barra de navegación */
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+}
 
+/* Título principal */
+.title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de búsqueda y botón */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .mechanic-search-input {
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-    color: #000000;
-    text-align: center;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
+    width: 70%;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    max-width: 400px;
 }
 
-.add-mechanic-button {
+/* Botón de agregar mecánico */
+.add-button {
     padding: 10px 20px;
-    margin-bottom: 20px;
-    background-color: #4CAF50;
+    background-color: #d30000;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.add-mechanic-button:hover {
-    background-color: #45a049;
+.add-button:hover {
+    background-color: #b30000;
 }
 
+/* Lista de mecánicos */
 .mechanic-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 200px;
+    gap: 10px;
 }
 
+/* Estilos de las tarjetas de mecánicos */
 .mechanic-card {
     background-color: rgba(209, 0, 0, 0.8);
     padding: 15px;
-    margin: 10px 0;
     border: 2px solid #c20000;
     border-radius: 5px;
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Roboto', sans-serif;
     font-size: large;
-
 }
 
-h2 {
-    white-space: nowrap;
-    font-size: 2em;
-    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
-    padding: 0;
+.mechanic-card p {
+    margin: 5px 0;
 }

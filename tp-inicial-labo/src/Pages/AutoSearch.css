@@ -17,90 +17,66 @@ body {
     background-size: cover;
     background-position: center;
     font-family: 'Roboto', sans-serif;
-    justify-content: flex-start; /* Alinea el contenido hacia la izquierda */
     background-attachment: fixed;
-    min-width: 300%;
-    
-}
-
-.search-add-container{
-    display: flex;
-    flex-direction: column; /* Alinea los botones y resultados en fila */
-    justify-content: flex-start; /* Alinea el contenido hacia la izquierda */
-    align-items: flex-start;
-    width: 70vh; /* Ajusta el ancho del contenedor principal */
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px 0px;
 }
 
 /* Contenedor principal para la búsqueda y resultados */
 .auto-search-container {
-    display: flex; /* Flex para alinear el contenido en dos columnas */
-    justify-content: space-between; /* Espacio entre las dos secciones */
-    align-items: flex-start; /* Alinear los elementos al inicio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
-    width: 100%; /* Ocupar todo el ancho */
-    margin-top: 80px; /* Añade margen superior para evitar la barra de navegación */
-    min-height: calc(100vh - 80px); /* Ajusta la altura considerando la barra de navegación */
+    width: 100%;
+    margin-top: 80px; /* Espacio para la barra de navegación */
+    min-height: calc(100vh - 80px);
     color: white;
 }
 
-/* Contenedor de búsqueda y botones */
+/* Título */
 h2 {
-    display: flex;
-    flex-direction: column; /* Coloca los elementos en una columna */
-    align-items: flex-start; /* Alinea el contenido a la izquierda */
-    gap: 10px;
-    width: 30%; /* Ancho para el contenedor de botones */
-    margin-right: 20px; /* Espacio entre botones y resultados */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
 }
 
+/* Contenedor de búsqueda y botones */
+.search-add-container {
+    display: flex;
+    flex-direction: column; /* Coloca la barra de búsqueda y los botones en columna */
+    align-items: center;
+    width: 100%;
+}
 
+/* Input de búsqueda */
 .auto-search-input {
     width: 100%;
+    max-width: 400px;
     text-align: center;
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    max-width: 400px;
 }
 
 /* Botones de agregar auto y escanear QR */
 .buttons-search-add-container {
-    display: flex; /* Usa flex para alinear los botones */
-    flex-direction: column; /* Coloca los botones en columna */
-    justify-content: flex-start; /* Alinea los botones al inicio de la columna */
-    align-items: center; /* Centra los botones horizontalmente */
+    display: flex;
+    flex-direction: row; /* Coloca los botones en fila */
     gap: 10px; /* Espacio entre los botones */
-    margin-left: 50hv; /* Empuja el contenedor a la derecha */
-    padding: 10px; /* Padding opcional para más espacio alrededor */
-    margin-top: 30vh;
-    width: 20vh; /* Ajusta el ancho del contenedor principal */
-
-
-        /* Fijar los botones en la pantalla */
-        position: fixed;
-        top: 20%; /* Ajusta la posición vertical según tus necesidades */
-        right: 40vh; /* Alinea el contenedor a la derecha */
+    margin-bottom: 20px;
 }
 
-  
 .add-auto-button, .scan-qr-button {
-    padding: 10px 50px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 0; /* Asegura que no haya margen inferior adicional */
-
 }
 
 .add-auto-button {
     background-color: #d30000;
     color: white;
-    margin: 10px;
 }
 
 .add-auto-button:hover {
@@ -108,13 +84,20 @@ h2 {
 }
 
 .scan-qr-button {
-    background-color: #5c5c5c;
+    background-color: #b30000;
     color: white;
-    margin: 10px;
 }
 
 .scan-qr-button:hover {
-    background-color: #414141;
+    background-color: #a10000;
 }
 
-
+/* Lista de tarjetas de autos */
+.auto-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}

@@ -1,58 +1,79 @@
-/* Contenedor principal para alinear los elementos en una fila */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Contenedor principal */
 .contenedor {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh; /* Hacer que el contenedor ocupe toda la altura de la ventana */
-    padding: 0 20px; /* Espaciado horizontal */
-    font-family: Arial, sans-serif; /* Fuente para el texto */
-  }
-  
-  /* Estilo para el título de la página */
+  display: flex;
+  flex-direction: column; /* En columnas para pantallas pequeñas */
+  justify-content: center; /* Centra el formulario verticalmente */
+  align-items: center; /* Centra el formulario horizontalmente */
+  height: 100vh;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Estilo para el título */
+.contenedor h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Estilo del formulario */
+.contenedor form {
+  width: 100%;
+  max-width: 400px; /* Ancho máximo del formulario */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los campos de entrada */
+.contenedor input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Estilo del botón de inicio de sesión */
+.contenedor button {
+  width: 100%;
+  padding: 10px;
+  background-color: #d10000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contenedor button:hover {
+  background-color: #a50000;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
   .contenedor h2 {
-    font-size: 48px; /* Tamaño de fuente grande */
-    margin: 20px;
-    color: #ffffff; /* Color del texto */
+      font-size: 2rem;
   }
-  
-  /* Contenedor del formulario alineado a la derecha */
+
   .contenedor form {
-    display: flex;
-    flex-direction: column; /* Coloca los elementos uno debajo del otro */
-    align-items: flex-start; /* Alinea los elementos a la izquierda dentro del formulario */
-    max-width: 300px; /* Ancho máximo para el formulario */
+      padding: 15px;
   }
-  
-  /* Espaciado y estilo de los campos de entrada y etiquetas */
-  .contenedor label {
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #555; /* Color del texto de las etiquetas */
-  }
-  
+
   .contenedor input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px; /* Espaciado inferior entre campos */
-    border: 1px solid #ccc; /* Borde de los campos */
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 16px;
+      font-size: 1rem;
   }
-  
-  /* Estilo del botón de inicio de sesión */
+
   .contenedor button {
-    width: 100%;
-    padding: 10px;
-    background-color: #d10000; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 16px;
-    cursor: pointer; /* Cursor de mano al pasar sobre el botón */
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+      font-size: 1rem;
   }
-  
-  .contenedor button:hover {
-    background-color: #990000; /* Color de fondo al pasar el ratón sobre el botón */
-  }
-  
+}
