@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './MechanicManagement.css';
 import Navbar from '../components/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 // Datos de ejemplo de mecánicos
 import mecanicosData from '../data/mecanicos.json';
@@ -46,10 +47,17 @@ function MechanicManagement() {
                 return { ...mecanico, habilitado: false }; // Marcar como inhabilitado
             }
             return mecanico;
-        });
+        }
+    );
+   
+
         setFilteredMecanicos(updatedMecanicos); // Actualizar la lista de mecánicos
         localStorage.setItem('mecanicos', JSON.stringify(updatedMecanicos)); // Guardar en localStorage
         setSelectedMechanicId(null); // Deseleccionar el mecánico después de inhabilitarlo
+    };
+
+    const handleAddMechanic = () => {
+        navigate('/agregar-mecanico'); // Ruta de la nueva página para agregar mecánico
     };
 
     return (
@@ -82,7 +90,9 @@ function MechanicManagement() {
                     <p>No se encontraron mecánicos.</p>
                 )}
             </div>
-            
+            <button onClick={handleAddMechanic} className="add-button">
+                    Agregar Mecanico
+                </button>
             {/* Mostrar botón de "Dar de baja" solo si un mecánico ha sido seleccionado */}
             {selectedMechanicId && (
                 <button onClick={handleDisableMechanic} className="remove-button">
